@@ -1,0 +1,32 @@
+POST http://localhost/register
+Content-Type: application/json
+
+{
+    "firstName": "John",
+    "lastName": "Smith",
+    "email": "author@example.com",
+    "password": "Basic1234",
+    "confirmPassword": "Basic1234",
+    "academicInterest": {
+        "options": [
+            "Energetics, Industry 4.0",
+            "Robotics",
+            "Power Electronics",
+            "Hardware Design"
+        ],
+        "selectedOption": "Hardware Design"
+    },
+    "affiliation": {
+        "options": [
+            "BME AUT",
+            "BME Industry 4.0 Technology Center",
+            "Other"
+        ],
+        "selectedOption": "BME AUT"
+    },
+    "submittedPapers": [],
+    "appliedProjects": [],
+    "paperResults": [],
+    "phone": "+92 333 5469811",
+    "id": "author12345"
+}
