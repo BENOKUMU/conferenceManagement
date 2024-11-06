@@ -1,8 +1,5 @@
 import { RoleType } from "../../data/pages/Form/registration/InitialRegisterFormData";
-import {
-  InitialRegisterFormDataType,
-  RegisterDropdownNamesType,
-} from "./registration/types";
+import { InitialRegisterFormDataType, RegisterDropdownNamesType } from "./registration/types";
 import { RoleRadioInputDataType } from "./types";
 
 type HandleApproveRole = () => void;

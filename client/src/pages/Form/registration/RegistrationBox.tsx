@@ -49,12 +49,12 @@ const RegistrationBox: React.FC<RegistrationBoxProps> = ({
     // Remove spaces from the phone number
     const sanitizedPhoneNumber = phoneNumber.replace(/\s+/g, '');
     const phoneNumberObj = parsePhoneNumberFromString(sanitizedPhoneNumber);
-    
+
     // Check if the phone number is valid
     if (phoneNumberObj) {
       return phoneNumberObj.isValid();
     }
-    
+
     return false;
   };
 
@@ -127,9 +127,9 @@ const RegistrationBox: React.FC<RegistrationBoxProps> = ({
                   }}
                   key={index}
                   type="button"
-                  // onClick={() => {
-                  //   goTo(index);
-                  // }}
+                // onClick={() => {
+                //   goTo(index);
+                // }}
                 >
                   {index + 1}
                 </button>

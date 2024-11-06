@@ -8,73 +8,32 @@ import useAuthentication from "../../../hooks/useAuthentication";
 import { db } from "../../../firebase/index";
 import { doc, onSnapshot } from "firebase/firestore";
 
-export default function Layout({ children }: { children: React.ReactNode }) {
+export default function Layout() {
   const [isMobile, setIsMobile] = useState(false);
   const location = useLocation();
-  const navigate=useNavigate();
+  const navigate = useNavigate();
   const authUser = useAuthentication();
-
-  const [currentPathName, setCurrentPathName] = useState("")
-
-
-  useEffect(() => {
-    if(location.pathname === "/author-dashboard"){
-      setCurrentPathName("Home")
-    }
-    else if(location.pathname === "/author-dashboard/my-conferences"){
-      setCurrentPathName("My Conferences")
-    }
-    else if(location.pathname === "/author-dashboard/all-conferences"){
-      setCurrentPathName("All Conferences")
-    }
-    
-    else if(location.pathname === "/author-dashboard/reviewer-response"){
-      setCurrentPathName("Results")
-    }
-
-  }, [location])
-  
+  const [currentPathName, setCurrentPathName] = useState("");
   const userDataElements = useUserData();
 
-  
   useEffect(() => {
-    const userRole=localStorage.getItem("userRole")
-    if(userRole!=="author"){
-      navigate('/')
+    if (location.pathname === "/author-dashboard") {
+      setCurrentPathName("Home");
+    } else if (location.pathname === "/author-dashboard/my-conferences") {
+      setCurrentPathName("My Conferences");
+    } else if (location.pathname === "/author-dashboard/all-conferences") {
+      setCurrentPathName("All Conferences");
+    } else if (location.pathname === "/author-dashboard/reviewer-response") {
+      setCurrentPathName("Results");
     }
-  }, [])
+  }, [location]);
 
-  // useEffect(() => {
-  //   const fetchUserData = async () => {
-  //     try {
-  //       const authUid = authUser?.uid;
-  //       const authorUserDocRef = doc(db, "authorUsers", authUid);
-  //       const unsubscribe = onSnapshot(authorUserDocRef, (snapshot) => {
-  //         if (!snapshot.exists()) {
-  //           console.log("DOC NOT FOUND")
-  //           navigate("/");
-  //           return;
-  //         }
-  //       });
-  
-  //       return () => {
-  //         unsubscribe();
-  //       };
-  //     } catch (error) {
-  //       console.error("Error fetching user data:", error);
-  //     }
-  //   };
-  
-  //   if (authUser?.uid) {
-  //     // Delay execution by 1 second
-  //     const timer = setTimeout(() => {
-  //       fetchUserData();
-  //     }, 1000);
-  
-  //     return () => clearTimeout(timer); // Clean up the timer
-  //   }
-  // }, [authUser?.uid]);
-  
+  useEffect(() => {
+    const userRole = localStorage.getItem("userRole");
+    if (userRole !== "author") {
+      navigate("/");
+    }
+  }, []);
 
   const containerRef = useRef<HTMLDivElement>(null);
 
@@ -85,7 +44,6 @@ export default function Layout({ children }: { children: React.ReactNode }) {
   useEffect(() => {
     checkIsMobile();
     window.addEventListener("resize", checkIsMobile);
-
     return () => {
       window.removeEventListener("resize", checkIsMobile);
     };
@@ -139,25 +97,26 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                 background: "#0f67fd",
                 color: "#fff",
                 fontWeight: "bolder",
-                height: '10%',
-                boxShadow: "0px 5px 20px rgba(0,0,0,0.2)"
+                height: "10%",
+                boxShadow: "0px 5px 20px rgba(0,0,0,0.2)",
               }}
             >
               <div>Author Dashboard / {currentPathName}</div>
-              {userDataElements?.userData?.firstName && 
-              <div
-                style={{
-                  margin: "5px 10px",
-                  padding: "5px 10px",
-                  background: "#fff",
-                  boxShadow: "0px 5px 10px rgba(0,0,0,0.1)",
-                  borderRadius: '5px',
-                  color: '#0f67fd'
-                }}
-              >
-                {userDataElements?.userData?.firstName} {userDataElements?.userData?.lastName}
-              </div>
-              }
+              {userDataElements?.userData?.firstName && (
+                <div
+                  style={{
+                    margin: "5px 10px",
+                    padding: "5px 10px",
+                    background: "#fff",
+                    boxShadow: "0px 5px 10px rgba(0,0,0,0.1)",
+                    borderRadius: "5px",
+                    color: "#0f67fd",
+                  }}
+                >
+                  {userDataElements.userData.firstName}{" "}
+                  {userDataElements.userData.lastName}
+                </div>
+              )}
             </div>
             <div
               className={classes.scrollContainer}

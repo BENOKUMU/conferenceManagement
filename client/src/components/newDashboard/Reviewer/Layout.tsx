@@ -8,7 +8,7 @@ import useAuthentication from "../../../hooks/useAuthentication";
 import { db } from "../../../firebase/index";
 import { doc, onSnapshot } from "firebase/firestore";
 
-export default function ReviewerLayout({ children }: { children: React.ReactNode }) {
+export default function ReviewerLayout({ children }: { children?: React.ReactNode }) {
   const [isMobile, setIsMobile] = useState(false);
   const location = useLocation();
   const navigate=useNavigate();
