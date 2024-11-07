@@ -35,7 +35,6 @@ import ReviewerDashboard from "./pages/dashboard/Reviewer/Dashboard/index";
 import AdminLayout from "./components/newDashboard/Admin/Layout.js";
 import AdminDashboard from "./pages/dashboard/Admin/Dashboard/index";
 import NoPageAvailable from "./pages/NoPageAvailable/NoPageAvailable.js";
-import { auth } from "./firebase/index.js";
 import "./style.css";
 import ApprovaAbstract from "./pages/dashboard/Admin/ApprovaAbstract/index";
 import PaperAssessmentForm from "./pages/dashboard/Reviewer/PaperAssesment/index";

@@ -1,8 +1,8 @@
 import bcrypt from 'bcrypt';
-import { generateToken } from '../utils/generateToken.js';
 import AuthorUser from '../models/AuthorUser.js'; // Import specialized user models as needed
 import AdminUser from '../models/AdminUser.js';
 import ReviewerUser from '../models/ReviewerUser.js';
+import generateToken from '../utils/generateToken.js';
 
 // /* REGISTER USER (modified for role-based actions) */
 export const registerAuthor = async (req, res) => {
@@ -196,6 +196,9 @@ export const loginAuthor = async (req, res) => {
         const user = await AuthorUser.findOne({ email });
         if (user && await bcrypt.compare(password, user.password)) {
             const token = generateToken(user._id, 'author');
+
+            console.log('Token:', token);
+            
             res.status(200).json({ user: { email: user.email, role: 'author' }, token });
         } else {
             res.status(401).json({ error: 'Invalid email or password' });
